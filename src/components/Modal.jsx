@@ -1,7 +1,15 @@
+import CustomButton from "./CustomButton";
 
-const Modal = () => {
+const Modal = ({ setShowModal, showModal, title}) => {
   return (
-    <div>Modal</div>
+    <div>
+      <h2>{title}</h2>
+      <form>
+        <input />
+        <input />
+        <button />
+      </form>
+    </div>
   )
 }
 

@@ -1,7 +1,9 @@
 
-const CustomButton = () => {
+const CustomButton = ({onClick, text}) => {
   return (
-    <div>CustomButton</div>
+    <div onClick={onClick}>
+      {text}
+    </div>
   )
 }
 
