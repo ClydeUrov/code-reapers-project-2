@@ -1,13 +1,13 @@
 import { Suspense } from "react";
 import Footer from "./Footer";
-import Header from "./Header";
+import Header from "./header/Header";
 import { Outlet } from "react-router-dom";
 import Loader from "./Loader";
 import { Toaster } from "react-hot-toast";
 
 const Layout = () => {
   return (
-    <div className="w-full grid grid-rows-[100px_1fr_200px]">
+    <div className="w-full">
       <Header />
       <Suspense fallback={<Loader />}>
         <Outlet />
