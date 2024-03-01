@@ -1,9 +1,12 @@
 
 const CustomButton = ({onClick, text}) => {
   return (
-    <div onClick={onClick}>
+    <button 
+      className="button" 
+      onClick={onClick}
+    >
       {text}
-    </div>
+    </button>
   )
 }
 

@@ -34,9 +34,9 @@ const Footer = () => {
         id="icons"
         className="mr-16 flex w-56 items-center justify-center space-x-5"
       >
-        <FaFacebook className="text-3xl" />
-        <FaInstagramSquare className="text-3xl" />
-        <FaTelegram className="text-3xl" />
+        <FaFacebook className="text-3xl cursor-pointer" />
+        <FaInstagramSquare className="text-3xl cursor-pointer" />
+        <FaTelegram className="text-3xl cursor-pointer" />
 
         <p className="text-2xl font-bold">UA</p>
       </div>

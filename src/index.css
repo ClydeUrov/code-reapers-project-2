@@ -32,3 +32,7 @@
 .styledLi {
   @apply font-semibold text-gray-600 border-b-2 border-b-transparent duration-200 ease-in hover:cursor-pointer hover:border-b-2 hover:border-b-gray-600 hover:text-gray-900 w-fit;
 }
+
+.button {
+  @apply h-[70px] w-[280px] rounded-3xl border bg-gradient-to-b from-gray-200 to-gray-300 text-2xl hover:to-gray-400;
+}
