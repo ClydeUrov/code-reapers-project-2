@@ -1,5 +1,4 @@
 import axios from "axios";
-import { errorToast } from "./toasters";
 
 export async function fetchUser(email, password) {
   return await axios
