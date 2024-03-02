@@ -1,4 +1,4 @@
-function NavLinks({ list = [] }) {
+function NavLinks({ list = [], setCurrentPage }) {
   return (
     <nav>
       <ul className="flex flex-col gap-y-4">
@@ -6,9 +6,10 @@ function NavLinks({ list = [] }) {
           <li
             key={i}
             className="styledLi flex gap-x-4 items-center text-[18px]"
-            onClick={el.onClick}
+            onClick={() => el.onClick(setCurrentPage)}
           >
-            <span className="text-[30px]">{el.icon}</span> <span>{el.text}</span>
+            <span className="text-[30px]">{el.icon}</span>{" "}
+            <span>{el.text}</span>
           </li>
         ))}
       </ul>
