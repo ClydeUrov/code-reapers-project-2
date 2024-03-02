@@ -34,5 +34,9 @@
 }
 
 .button {
-  @apply h-[70px] w-[280px] rounded-3xl border bg-gradient-to-b from-gray-200 to-gray-300 text-2xl hover:to-gray-400;
+  @apply h-[55px] w-[180px] rounded-3xl border bg-gradient-to-b from-gray-300 to-gray-400 text-2xl hover:to-gray-500;
+}
+
+.input {
+  @apply rounded-full border border-gray-300 px-4 py-2 focus:outline-none focus:border-blue-500;
 }
