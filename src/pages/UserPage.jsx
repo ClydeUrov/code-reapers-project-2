@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { IoMdArrowBack } from "react-icons/io";
 import Logo from "../components/Logo";
-import TeachersItems from "../components/TeachersItems";
 import { AiOutlinePicture } from "react-icons/ai";
-import { FaRegBell } from "react-icons/fa6";
-import { IoSettings } from "react-icons/io5";
+import NavLinks from "../components/NavLinks";
+import { linksForStudent } from "../data/linksForStudent";
+import { linksForTeachers } from "../data/linksForTeacers";
+
 
 const UserPage = () => {
   const [userData, setUserData] = useState({
@@ -12,27 +13,25 @@ const UserPage = () => {
     position: "викладач кафедри математики",
     email: "teacher@gmail.com",
     state: "Teacher",
+    // state: "Student",
   });
-
-  const userRole =
-    userData.state === "Student"
-      ? "Студента"
-      : userData.state === "Admin"
-      ? "Адміністратора"
-      : "Викладача";
 
   const handleLogout = () => {};
 
   return (
-    <div className="flex h-[100vh]">
-      <div className="flex flex-col gap-8 pt-6 px-10 bg-[#8A8677] w-1/5 text-white">
+    <div className="flex h-full">
+      <div className="flex flex-col gap-8 pt-6 px-10 bg-gray-200 ">
         <div className="my-10">
           <Logo />
         </div>
         <div className="w-full flex justify-center mb-6">
           <AiOutlinePicture className="rounded-full p-10 bg-aliceblue bg-opacity-60 h-auto min-w-32 border-solid object-fill shadow-lg text-slate-300" />
         </div>
-        {userData.state === "Student" ? <></> : <TeachersItems />}
+        {userData.state === "Student" ? (
+          <NavLinks list={linksForStudent} />
+        ) : (
+          <NavLinks list={linksForTeachers} />
+        )}
         <span
           className="styledLi mb-4 mr-6 flex items-center gap-2 mt-auto"
           onClick={handleLogout}
