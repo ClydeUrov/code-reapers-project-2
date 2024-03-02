@@ -3,7 +3,7 @@
 // import Modal from "../components/Modal";
 // import { errorToast, infoToast, successToast } from "../helpers/toasters";
 
-import NavLinks from "../components/Student/NavLinks";
+import NavLinks from "../components/NavLinks";
 
 const Home = () => {
   // const [isModalOpen, setIsModalOpen] = useState(false);
