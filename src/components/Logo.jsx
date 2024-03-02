@@ -6,12 +6,11 @@ function Logo() {
       <Link to="/" className="flex w-fit items-center">
         <span className="text-6xl">🏰</span>
         <span className="text-l pt-3 w-28 font-extrabold">
-          НОВИЙ<br />
-          САЙТ
+          ПОЛІТЕХНІЧНИЙ<br/>УНІВЕРСИТЕТ
         </span>
       </Link>
     </section>
-  );
+  ); 
 }
 
 export default Logo;
