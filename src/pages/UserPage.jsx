@@ -7,15 +7,17 @@ import { linksForStudent } from "../data/linksForStudent";
 import { linksForTeachers } from "../data/linksForTeacers";
 import { IoSettings } from "react-icons/io5";
 import { FaRegBell } from "react-icons/fa6";
+import { useNavigate } from "react-router";
 
 const UserPage = () => {
   const [userData, setUserData] = useState({
     fullName: "Симоненко Ганна Петрівна",
     position: "викладач кафедри математики",
     email: "teacher@gmail.com",
-    state: "Teacher",
-    // state: "Student",
+    // state: "Teacher",
+    state: "Student",
   });
+  const navigate = useNavigate();
 
   const userRole =
     userData.state === "Student"
@@ -24,12 +26,15 @@ const UserPage = () => {
       ? "Адміністратора"
       : "Викладача";
 
-  const handleLogout = () => {};
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
 
   return (
-    <div className="flex h-[100vh]">
-      <div className="flex flex-col gap-8 pt-6 px-10 bg-[#8A8677] w-1/5 text-white">
-        <div className="my-10">
+    <div className="flex h-full min-h-[100vh]">
+      <div className="flex flex-col gap-8 pt-6 px-6 bg-[#8A8677]  min-w-[320px] w-1/5  text-white">
+        <div className="my-10 mr-4">
           <Logo />
         </div>
         <div className="w-full flex justify-center mb-6">
