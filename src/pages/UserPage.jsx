@@ -5,6 +5,8 @@ import { AiOutlinePicture } from "react-icons/ai";
 import NavLinks from "../components/NavLinks";
 import { linksForStudent } from "../data/linksForStudent";
 import { linksForTeachers } from "../data/linksForTeacers";
+import { IoSettings } from "react-icons/io5";
+import { FaRegBell } from "react-icons/fa6";
 
 const UserPage = () => {
   const [userData, setUserData] = useState({
