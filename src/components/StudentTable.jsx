@@ -4,6 +4,8 @@ import { IoFilterSharp } from "react-icons/io5";
 import { getAllStudents } from "../helpers/api";
 import { errorToast } from "../helpers/toasters";
 import toast from "react-hot-toast";
+import Modal from "./Modal";
+import ModalStudentCard from "./ModalStudentCard";
 
 function convertFromRoman(str) {
   if (str === "I") return 1;
@@ -13,11 +15,13 @@ function convertFromRoman(str) {
   if (str === "V") return 5;
 }
 
-const StudentTable = ({}) => {
+const StudentTable = () => {
   const [students, setStudents] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOption, setSortOption] = useState("");
   const [sortedStudents, setSortedStudents] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selected, setSelected] = useState('');
 
   useEffect(() => {
     async function fetchStudents() {
@@ -50,7 +54,7 @@ const StudentTable = ({}) => {
     if (sortOption === "A-Z")
       setSortedStudents(() =>
         students
-          .slice()
+          .slice() 
           .sort((a, b) =>
             a.middleName > b.middleName
               ? 1
@@ -101,12 +105,12 @@ const StudentTable = ({}) => {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-2 mt-2">
           <IoFilterSharp className="text-gray-500 text-2xl mr-2" />
           <select
             value={sortOption}
             onChange={handleSortChange}
-            className="border border-gray-300 px-4 py-2 rounded-full"
+            className="border border-gray-300 px-2 pr-20 py-3 rounded-full"
           >
             <option value="">ФІЛТЕР</option>
             <option value="A-Z">За алфавітом А</option>
@@ -153,17 +157,24 @@ const StudentTable = ({}) => {
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
           {sortedStudents.map((student) => (
-            <tr key={student.id}>
+            <tr 
+              key={student.id}
+              onClick={() => {
+                setSelected(student);
+                setIsModalOpen(true);
+              }}
+              className="cursor-pointer"
+            >
               <td className="px-6 py-4 whitespace-nowrap">
                 <div className="text-sm text-gray-900">{student.id}</div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
                 <div className="text-sm text-gray-900">
-                  {student.middleName +
+                  {student.lastName +
                     " " +
                     student.firstName +
                     " " +
-                    student.lastName}
+                    student.middleName}
                 </div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
@@ -173,12 +184,18 @@ const StudentTable = ({}) => {
                 <div className="text-sm text-gray-900">{student.course}</div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-gray-900">{student.group}</div>
+                <div className="text-sm text-gray-900">{student.groupCipher}</div>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      {isModalOpen && (
+        <Modal 
+          children={<ModalStudentCard student={selected} onClose={() => setIsModalOpen(false)} />} 
+          onCloseModal={() => setIsModalOpen(false)} 
+        />
+      )}
     </div>
   );
 };

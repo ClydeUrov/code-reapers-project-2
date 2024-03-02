@@ -6,10 +6,9 @@ const Modal = ({ children, onCloseModal, title = "" }) => {
   return createPortal(
     <div 
       className="fixed top-0 right-0 bg-slate-500/35 h-full w-full flex justify-center items-center"
-      onClick={onCloseModal}
     >
       <section
-        className="w-3/5 h-3/5 bg-slate-100 rounded-2xl max-w-[550px] px-6 py-4 text-xl"
+        className="w-3/5 lg:h-3/5 bg-slate-100 rounded-2xl px-6 py-4 text-xl"
         ref={ref}
       >
         <header className=" flex items-center justify-between">
