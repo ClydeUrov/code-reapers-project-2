@@ -5,10 +5,10 @@ function NavLinks({ list = [] }) {
         {list.map((el, i) => (
           <li
             key={i}
-            className="styledLi flex gap-x-4 items-center "
+            className="styledLi flex gap-x-4 items-center text-[18px]"
             onClick={el.onClick}
           >
-            {el.icon} <span>{el.text}</span>
+            <span className="text-[30px]">{el.icon}</span> <span>{el.text}</span>
           </li>
         ))}
       </ul>

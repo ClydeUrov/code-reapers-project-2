@@ -28,8 +28,8 @@ const UserPage = () => {
   const handleLogout = () => {};
 
   return (
-    <div className="flex h-full">
-      <div className="flex flex-col gap-8 pt-6 px-10 bg-gray-200 ">
+    <div className="flex h-[100vh]">
+      <div className="flex flex-col gap-8 pt-6 px-10 bg-[#8A8677] w-1/5 text-white">
         <div className="my-10">
           <Logo />
         </div>
