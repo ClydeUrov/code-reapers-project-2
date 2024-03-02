@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { isValidEmail } from "../helpers/paterns";
+import backgroundImage from "../icons/bg.png";
+import { SiInternetarchive } from "react-icons/si";
 import { fetchUser } from "../helpers/api";
 import { useNavigate } from "react-router";
 import { errorToast } from "../helpers/toasters";
@@ -44,41 +46,54 @@ function LoginPage() {
     );
   }
   return (
-    <div className="w-full h-[100vh] overflow-hidden bg-slate-50 flex justify-center items-center">
+    <div
+      className="w-full h-[100vh] overflow-hidden flex justify-center items-center relative"
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: "cover",
+      }}
+    >
+      <div
+        className="absolute left-5 top-8 flex p-10 text-white"
+        style={{ background: "radial-gradient(#000 1%, transparent 40%)" }}
+      >
+        <span className="text-4xl">
+          <SiInternetarchive />
+        </span>
+        <h2 className="w-[230px] ml-5 text-5xl">
+          Університет Інформаційних Технологій
+        </h2>
+      </div>
       <form
-        className="w-3/5 h-3/5 bg-slate-200 rounded-3xl border border-slate-400 shadow-2xl flex flex-col justify-center items-center gap-6 "
+        className="w-2/5 h-3/6 rounded-3xl shadow-2xl flex flex-col justify-center items-center gap-6 bg-[#8A8677] bg-opacity-60"
         onSubmit={onSubmit}
       >
-        <h1 className="mb-4 font-semibold text-xl">Authorization</h1>
+        <h1 className="mb-4 font-semibold text-2xl">Авторизація</h1>
         <div className="flex gap-y-5 flex-col">
-          <div className="flex items-center justify-around w-full gap-x-4">
-            <label htmlFor="login" className="w-2/5">
-              Login
-            </label>
+          <div className="flex items-center justify-around gap-x-4 lg:w-96">
             <input
               value={login}
               onChange={(e) => {
                 setError("");
                 setLogin(e.target.value);
               }}
+              placeholder="E-mail"
               required
               type="text"
               id="login"
-              className="px-2 py-2 bg-slate-50 border-2 border-slate-300 focus:border-slate-400 focus:outline-none rounded-lg"
+              className="w-full px-2 py-2 bg-slate-50 border-2 border-slate-300 focus:border-slate-400 focus:outline-none rounded-full"
             />
           </div>
-          <div className="flex items-center justify-around w-full gap-x-4">
-            <label htmlFor="password" className="w-2/5">
-              Password
-            </label>
+          <div className="flex items-center justify-around gap-x-4 lg:w-96">
             <input
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
               required
               minLength={6}
               type="password"
               id="password"
-              className="px-2 py-2 border-2 border-slate-300 focus:border-slate-400 focus:outline-none rounded-lg bg-slate-50"
+              className="w-full px-2 py-2 border-2 border-slate-300 focus:border-slate-400 focus:outline-none rounded-full bg-slate-50"
             />
           </div>
         </div>
@@ -91,7 +106,7 @@ function LoginPage() {
           } `}
           disabled={!!error}
         >
-          Log in
+          Увійти
         </button>
       </form>
     </div>

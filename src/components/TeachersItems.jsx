@@ -9,23 +9,23 @@ const TeachersItems = () => {
     <>
       <button className="flex items-center">
         <IoCalendarOutline className="text-4xl" />
-        <p className="ml-3 text-lg">Навчальний календар</p>
+        <p className="ml-3 text-lg text-justify">Навчальний календар</p>
       </button>
       <button className="flex items-center">
         <TiMessages className="text-4xl" />
-        <p className="ml-3 text-lg">Повідомлення</p>
+        <p className="ml-3 text-lg text-justify">Повідомлення</p>
       </button>
       <button className="flex items-center">
         <FaPeopleGroup className="text-4xl" />
-        <p className="ml-3 text-lg">Студенти</p>
+        <p className="ml-3 text-lg text-justify">Студенти</p>
       </button>
       <button className="flex items-center">
         <BsListCheck className="text-4xl" />
-        <p className="ml-3 text-lg">Створити тестування</p>
+        <p className="ml-3 text-lg text-justify">Створити тестування</p>
       </button>
       <button className="flex items-center">
         <RiMailSendLine className="text-4xl" />
-        <p className="ml-3 text-lg">Створити розсилку</p>
+        <p className="ml-3 text-lg text-justify">Створити розсилку</p>
       </button>
     </>
   )
