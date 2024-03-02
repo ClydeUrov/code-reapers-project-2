@@ -5,6 +5,8 @@ import { AiOutlinePicture } from "react-icons/ai";
 import NavLinks from "../components/NavLinks";
 import { linksForStudent } from "../data/linksForStudent";
 import { linksForTeachers } from "../data/linksForTeacers";
+import { FaRegBell } from "react-icons/fa6";
+import { IoSettings } from "react-icons/io5";
 
 
 const UserPage = () => {
@@ -15,6 +17,13 @@ const UserPage = () => {
     state: "Teacher",
     // state: "Student",
   });
+
+  const userRole =
+    userData.state === "Student"
+      ? "Студента"
+      : userData.state === "Admin"
+      ? "Адміністратора"
+      : "Викладача";
 
   const handleLogout = () => {};
 
