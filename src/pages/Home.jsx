@@ -1,14 +1,17 @@
-import { useState } from "react";
-import CustomButton from "../components/CustomButton";
-import Modal from "../components/Modal";
-import { errorToast, infoToast, successToast } from "../helpers/toasters";
+// import { useState } from "react";
+// import CustomButton from "../components/CustomButton";
+// import Modal from "../components/Modal";
+// import { errorToast, infoToast, successToast } from "../helpers/toasters";
+
+import NavLinks from "../components/Student/NavLinks";
 
 const Home = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <div className="">
-      <div>
+      <NavLinks />
+      {/* <div>
         <CustomButton onClick={() => setIsModalOpen(true)} text="Open Modal" />
         <div className="space-x-6">
           <h3>toasters</h3>
@@ -20,7 +23,7 @@ const Home = () => {
 
       {isModalOpen && (
         <Modal onCloseModal={() => setIsModalOpen(false)} title="Some header" />
-      )}
+      )} */}
     </div>
   );
 };
