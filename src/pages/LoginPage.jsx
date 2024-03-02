@@ -1,12 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { isValidEmail } from "../helpers/paterns";
+import { fetchUser } from "../helpers/api";
+import { useNavigate } from "react-router";
+import { errorToast } from "../helpers/toasters";
+import toast from "react-hot-toast";
 
 function LoginPage() {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  function onSubmit(e) {
+  async function onSubmit(e) {
     e.preventDefault();
     setError("");
     if (!login || !password) {
@@ -17,7 +22,26 @@ function LoginPage() {
       return;
     }
 
-    console.log("EVERETHING GOOD");
+    toast.promise(
+      fetchUser(login, password)
+        .then((data) => {
+          if (data) {
+            localStorage.setItem("user", JSON.stringify(data));
+            navigate("/profile");
+          }
+          return data;
+        })
+        .catch((err) => {
+          if (err.response.status === 400) {
+            errorToast("Не вірниий логін або пароль");
+            return;
+          }
+          errorToast(err.message);
+        }),
+      {
+        loading: "Зачекайте",
+      }
+    );
   }
   return (
     <div className="w-full h-[100vh] overflow-hidden bg-slate-50 flex justify-center items-center">
