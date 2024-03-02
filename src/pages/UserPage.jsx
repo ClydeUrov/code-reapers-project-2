@@ -5,8 +5,6 @@ import { AiOutlinePicture } from "react-icons/ai";
 import NavLinks from "../components/NavLinks";
 import { linksForStudent } from "../data/linksForStudent";
 import { linksForTeachers } from "../data/linksForTeacers";
-import { FaRegBell } from "react-icons/fa6";
-import { IoSettings } from "react-icons/io5";
 
 const UserPage = () => {
   const [userData, setUserData] = useState({
@@ -27,7 +25,7 @@ const UserPage = () => {
   const handleLogout = () => {};
 
   return (
-    <div className="flex h-full">
+    <div className="flex h-[100vh]">
       <div className="flex flex-col gap-8 pt-6 px-10 bg-[#8A8677] w-1/5 text-white">
         <div className="my-10">
           <Logo />

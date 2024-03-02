@@ -1,6 +1,6 @@
 import { Suspense } from "react";
-import Footer from "./Footer";
-import Header from "./header/Header";
+// import Footer from "./Footer";
+// import Header from "./header/Header";
 import { Outlet } from "react-router-dom";
 import Loader from "./Loader";
 import { Toaster } from "react-hot-toast";
