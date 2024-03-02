@@ -8,11 +8,11 @@ import { Toaster } from "react-hot-toast";
 const Layout = () => {
   return (
     <div className="w-full">
-      <Header />
+      {/* <Header /> */}
       <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
-      <Footer />
+      {/* <Footer /> */}
       <Toaster position="top-center" reverseOrder={false} />
     </div>
   );
