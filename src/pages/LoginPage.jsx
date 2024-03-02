@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { isValidEmail } from "../helpers/paterns";
 import backgroundImage from "../icons/bg.png";
 import { SiInternetarchive } from "react-icons/si";
@@ -59,11 +59,11 @@ function LoginPage() {
       >
         <span className="text-4xl">
           <SiInternetarchive />
-        </span>
+        </span> 
         <h2 className="w-[230px] ml-5 text-5xl">
           Університет Інформаційних Технологій
         </h2>
-      </div>
+      </div> 
       <form
         className="w-2/5 h-3/6 rounded-3xl shadow-2xl flex flex-col justify-center items-center gap-6 bg-[#8A8677] bg-opacity-60"
         onSubmit={onSubmit}
