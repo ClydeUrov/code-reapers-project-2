@@ -1,26 +1,40 @@
 import { useState } from 'react'
+import { updateStudent } from '../helpers/api';
+import { successToast } from '../helpers/toasters';
 
 const ModalStudentCard = ({student, onClose}) => {
-  const [lastName, setLastName] = useState('');
-  const [middleName, setMiddleName] = useState('');
-  const [faculty, setFaculty] = useState('');
-  const [email, setEmail] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [course, setCourse] = useState('');
+  const [lastName, setLastName] = useState(student.lastName || '');
+  const [middleName, setMiddleName] = useState(student.middleName || '');
+  const [faculty, setFaculty] = useState(student.faculty || '');
+  const [email, setEmail] = useState(student.email || '');
+  const [firstName, setFirstName] = useState(student.firstName || '');
+  const [course, setCourse] = useState(student.course || '');
   const [phone, setPhone] = useState('');
-  const [group, setGroup] = useState('');
+  const [group, setGroup] = useState(student.groupCipher || '');
+  const [error, setError] = useState('');
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // В этом месте вы можете выполнить дополнительные действия, такие как отправка данных на сервер
-    // await updateStudent();
-    onClose();
+
+    const data = {
+      firstName: firstName,
+      lastName: lastName,
+      middleName: middleName
+    }
+    
+    try {
+      await updateStudent({id:student.id, data:data});
+      successToast();
+      onClose();
+    } catch (error) {
+      setError(error.message)
+    }
   }
 
   return (
     <div className='text-center flex flex-col gap-10'>
       <h2 className='text-4xl'>Картка Студента</h2>
-      <form onSubmit={handleSubmit}>
+      <form className='flex flex-col gap-6' onSubmit={handleSubmit}>
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4'>
           <div>
             <input
@@ -99,12 +113,12 @@ const ModalStudentCard = ({student, onClose}) => {
         </div>
         <button
           type="submit"
-          className='button mr-20 ml-auto w-full'
+          className='button  ml-auto w-full'
         >
           Зберегти
         </button>
       </form>
-
+      {error && <p>error</p>}
       <div>
         <p>Оцінка та аналіз академічної успішності: {}</p>
         <p>Оцінка та аналіз відвідуваності: {}</p>
