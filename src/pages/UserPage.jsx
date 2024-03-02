@@ -1,78 +1,35 @@
 import { useState } from "react";
-import { IoMdArrowBack } from "react-icons/io";
-import Logo from "../components/Logo";
-import { AiOutlinePicture } from "react-icons/ai";
-import NavLinks from "../components/NavLinks";
-import { linksForStudent } from "../data/linksForStudent";
-import { linksForTeachers } from "../data/linksForTeacers";
-import { FaRegBell } from "react-icons/fa6";
 import { IoSettings } from "react-icons/io5";
-
+import { FaRegBell } from "react-icons/fa6";
+import NavBar from "../components/NavBar";
+import { mainPages } from "../data/mainPages";
+import { useLocalStorageState } from "../helpers/useLocalStorageState";
 
 const UserPage = () => {
-  const [userData, setUserData] = useState({
-    fullName: "Симоненко Ганна Петрівна",
-    position: "викладач кафедри математики",
-    email: "teacher@gmail.com",
-    state: "Teacher",
-    // state: "Student",
-  });
-
-  const userRole =
-    userData.state === "Student"
-      ? "Студента"
-      : userData.state === "Admin"
-      ? "Адміністратора"
-      : "Викладача";
-
-  const handleLogout = () => {};
-
+  const [currentPage, setCurrentPage] = useState("main");
+  const [user] = useLocalStorageState(null, "user");
+  const userRole = {
+    ROLE_STUDENT: "Студент",
+    ROLE_ADMIN: "Старший викладач",
+    ROLE_TEACHER: "Викладач",
+  };
   return (
-    <div className="flex min-h-[100vh]">
-      <div className="flex flex-col gap-8 pt-6 px-10 bg-[#8A8677] w-1/5 text-white">
-        <div className="my-10">
-          <Logo />
-        </div>
-        <div className="w-full flex justify-center mb-6">
-          <AiOutlinePicture className="rounded-full p-10 bg-aliceblue bg-opacity-60 h-auto min-w-32 border-solid object-fill shadow-lg text-slate-300" />
-        </div>
-        {userData.state === "Student" ? (
-          <NavLinks list={linksForStudent} />
-        ) : (
-          <NavLinks list={linksForTeachers} />
-        )}
-        <span
-          className="styledLi mb-4 mr-6 flex items-center gap-2 mt-auto"
-          onClick={handleLogout}
-        >
-          <i>
-            <IoMdArrowBack size={20} />
-          </i>
-          <span>ВИХІД</span>
-        </span>
-      </div>
-      <article className="w-4/5">
-        <div className="mb-12 ml-12 mt-14 flex items-center justify-between px-8 pt-6">
+    <>
+      <div className="flex h-full min-h-[100vh]">
+        <NavBar setCurrentPage={setCurrentPage} />
+        <div className="w-full">
           <h1 className="text-3xl font-normal">
-            Електронний кабінет {userRole}
+            Електронний кабінет {userRole[user.role]}
           </h1>
+          {mainPages[currentPage]}
         </div>
 
-        <section className="flex gap-12 py-4 pl-16">
-          <div className="flex flex-col justify-center gap-1 ">
-            <span className="text-[32px] font-bold px-6 py-2 w-80">
-              {userData.fullName}
-            </span>
-            <span className="px-6 py-2">{userData.position}</span>
-            <span className="rounded-full  px-6 py-2">{userData.email}</span>
-          </div>
-        </section>
-      </article>
-      <div className="mr-8 my-11 flex flex-col">
-        <FaRegBell className="text-3xl" />
-        <IoSettings className="text-3xl mt-auto" />
+        <div className="mr-8 my-11 relative">
+          <FaRegBell className="text-3xl absolute top-10 right-10" />
+          <IoSettings className="text-3xl mt-auto  absolute bottom-10 right-10" />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

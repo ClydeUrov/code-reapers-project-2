@@ -8,26 +8,26 @@ export const linksForStudent = [
   {
     text: "Навчальний календар",
     icon: <IoCalendarOutline />,
-    onClick: () => console.log("!!!!!!!!!!"),
+    onClick: (func) => func("calendar"),
   },
   {
     text: "Повідомлення",
     icon: <TiMessages />,
-    onClick: () => console.log("!!!!!!!!!!"),
+    onClick: (func) => func("messages"),
   },
   {
     text: "Аналіз успішності",
     icon: <IoBarChart />,
-    onClick: () => console.log("!!!!!!!!!!"),
+    onClick: (func) => func("analisysSuccess"),
   },
   {
     text: "Аналіз відвідуваності",
     icon: <LiaChalkboardTeacherSolid />,
-    onClick: () => console.log("!!!!!!!!!!"),
+    onClick: (func) => func("attendanceAnalysis"),
   },
   {
     text: "Пройти тестування",
     icon: <FaListCheck />,
-    onClick: () => console.log("!!!!!!!!!!"),
+    onClick: (func) => func("passTest"),
   },
 ];
