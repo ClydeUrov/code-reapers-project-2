@@ -46,6 +46,7 @@ const StudentTable = ({}) => {
 
   useEffect(() => {
     setSearchTerm("");
+    if (sortOption === "") setSortedStudents(students);
     if (sortOption === "A-Z")
       setSortedStudents(() =>
         students
