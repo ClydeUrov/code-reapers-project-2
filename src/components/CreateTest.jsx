@@ -81,11 +81,12 @@ function CreateTest() {
     <div className="m-10 px-8"> 
       <h1 className='text-4xl w-full text-center my-12'>Створити тестування</h1>
       <form onSubmit={handleSubmit} className="flex gap-5">
-        <div className="flex flex-col gap-5 lg:w-[700px]">
+        <div className="flex flex-col gap-5 lg:w-[800px]">
           <input
             className="input"
             id="subject"
             type="text"
+            required
             placeholder="Предмет тестування"
             value={formValues.subject}
             onChange={handleInputChange}
@@ -94,24 +95,12 @@ function CreateTest() {
             className="input"
             id="title"
             type="text"
+            required
             placeholder="Тема тестування"
             value={formValues.title}
             onChange={handleInputChange}
           />
           <div className="flex gap-12">
-            <select
-              className="input w-1/3"
-              id="course"
-              placeholder="Курс тестування"
-              value={formValues.course}
-              onChange={handleInputChange}
-            >
-              <option value="">Виберіть курс</option>
-              <option value="I">I</option>
-              <option value="II">II</option>
-              <option value="III">III</option>
-              <option value="IV">IV</option>
-            </select>
             <select
               className="input w-1/3"
               id="group"
@@ -129,15 +118,15 @@ function CreateTest() {
               <option value="7">IL-36</option>
               <option value="8">IE-02</option>
             </select>
+            <input
+              className="input"
+              id="deadline"
+              type="datetime-local"
+              placeholder="Дедлайн тесту"
+              value={formValues.deadline}
+              onChange={handleInputChange}
+            />
           </div>
-          <input
-            className="input"
-            id="deadline"
-            type="datetime-local"
-            placeholder="Дедлайн тесту"
-            value={formValues.deadline}
-            onChange={handleInputChange}
-          />
 
           <h3 className="text-lg font-semibold mt-5">Створити запитання:</h3>
 
@@ -145,6 +134,7 @@ function CreateTest() {
             className="input"
             style={{borderRadius: "10px"}}
             id="question"
+            maxLength={124}
             placeholder="Питання"
             value={questionValue.question}
             onChange={handleQuestionChange}
@@ -155,6 +145,7 @@ function CreateTest() {
               className="input"
               id="variant1"
               type="text"
+              maxLength={36}
               placeholder="Варіант"
               value={questionValue.variant1}
               onChange={handleQuestionChange}
@@ -163,6 +154,7 @@ function CreateTest() {
               className="input"
               id="variant2"
               type="text"
+              maxLength={36}
               placeholder="Варіант"
               value={questionValue.variant2}
               onChange={handleQuestionChange}
@@ -173,6 +165,7 @@ function CreateTest() {
               className="input"
               id="variant3"
               type="text"
+              maxLength={36}
               placeholder="Варіант"
               value={questionValue.variant3}
               onChange={handleQuestionChange}
@@ -181,6 +174,7 @@ function CreateTest() {
               className="input"
               id="variant4"
               type="text"
+              maxLength={36}
               placeholder="Варіант"
               value={questionValue.variant4}
               onChange={handleQuestionChange}
@@ -216,7 +210,7 @@ function CreateTest() {
       </form>
 
       {questionsList ?
-        <div className="max-w-[700px] mt-5">
+        <div className="max-w-[800px] mt-5">
           {questionsList.map((quest, index) => (
             <div key={index} className="my-5 flex gap-3 text-lg">
               <p>{quest.number}.</p>

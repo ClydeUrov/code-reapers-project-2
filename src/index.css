@@ -40,3 +40,7 @@
 .input {
   @apply rounded-full border border-gray-300 px-4 py-2 focus:outline-none focus:border-blue-500 w-full;
 }
+
+.table_title {
+  @apply px-6 py-3 text-left text-xs text-gray-700 uppercase tracking-wider font-semibold;
+}
