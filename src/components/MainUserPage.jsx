@@ -39,7 +39,12 @@ function MainUserPage() {
           <span className="px-6 py-2">
             {user.role === "ROLE_STUDENT" ? "Студент" : "Вчитель"}
           </span>
-          <span className="rounded-full  px-6 py-2">{userData.email}</span>
+          <span className="px-6 py-2">Group: {userData.groupCipher}</span>
+          <span className="px-6 py-2">Course: {userData.course}</span>
+          <span className="px-6 py-2">Faculty: {userData.faculty}</span>
+          <span className="rounded-full  px-6 py-2">
+            Email: {userData.email}
+          </span>
         </div>
       </section>
     </article>
