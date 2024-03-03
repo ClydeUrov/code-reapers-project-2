@@ -28,16 +28,19 @@ function NavBar({ setCurrentPage }) {
       </div>
       <div className="w-full flex justify-center mb-6">
         <img
+          onClick={() => setCurrentPage("main")}
           src={user.role === "ROLE_STUDENT" ? student : teacher}
           alt=""
           className="rounded-full p-10 bg-aliceblue bg-opacity-60 h-auto min-w-32 border-solid object-fill shadow-lg text-slate-300"
         />
       </div>
-      {user.role === "ROLE_STUDENT" ? (
-        <NavLinks list={linksForStudent} setCurrentPage={setCurrentPage} />
-      ) : (
-        <NavLinks list={linksForTeachers} setCurrentPage={setCurrentPage} />
-      )}
+      <div>
+        {user.role === "ROLE_STUDENT" ? (
+          <NavLinks list={linksForStudent} setCurrentPage={setCurrentPage} />
+        ) : (
+          <NavLinks list={linksForTeachers} setCurrentPage={setCurrentPage} />
+        )}
+      </div>
       <span
         className="styledLi mb-4 mr-6 flex items-center gap-2 mt-auto"
         onClick={handleLogout}
