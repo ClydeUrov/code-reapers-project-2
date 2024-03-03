@@ -42,6 +42,20 @@ export async function getAllStudents() {
     )
     .then((res) => res.data);
 }
+export async function getOneTest(id) {
+  const token = getToken();
+
+  return await axios
+    .get(
+      `http://ec2-16-170-239-71.eu-north-1.compute.amazonaws.com/campus/tests/${id}`,
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+    )
+    .then((res) => res.data);
+}
 
 export async function updateStudent({ id, data }) {
   const token = getToken();

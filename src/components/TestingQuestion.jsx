@@ -1,36 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-function TestingQuestion() {
-  const [chose, setChose] = useState();
-  const id = 1;
-
+function TestingQuestion({ question, setAnsw }) {
   return (
     <div>
-      <p>
-        SOME TEXT SOME TEXT SOME TEXT SOME TEXT SOME TEXT SOME TEXT SOME TEXT
-        SOME TEXT SOME TEXT SOME TEXT.{" "}
-      </p>
-      <form
-        className="grid grid-cols-2 gap-6 mt-6"
-        onChange={(e) => console.log("!!!!!!!!!!", e.target.id)}
-      >
+      <p>{question.question}</p>
+      <form className="grid grid-cols-2 gap-6 mt-6">
         <div>
-          <input type="radio" name={`option${id}`} id="1Variant" />
-          <label htmlFor="1Variant">VARIANT 1</label>
+          <input type="radio" name={`option`} id="option1" />
+          <label htmlFor="option1">{question.option1}</label>
         </div>
         <div>
-          <label htmlFor="1Variant">
-            <input type="radio" name={`option${id}`} id="1Variant" />
-            VARIANT 2
-          </label>
+          <input type="radio" name={`option`} id="option2" />
+          <label htmlFor="option2">{question.option2}</label>
         </div>
         <div>
-          <input type="radio" name={`option${id}`} id="1Variant" />
-          <label htmlFor="1Variant">VARIANT 3</label>
+          <input type="radio" name={`option`} id="option3" />
+          <label htmlFor="option3">{question.option3}</label>
         </div>
         <div>
-          <input type="radio" name={`option${id}`} id="1Variant" />
-          <label htmlFor="1Variant">VARIANT 4</label>
+          <input type="radio" name={`option`} id="option4" />
+          <label htmlFor="option4">{question.option4}</label>
         </div>
       </form>
     </div>
