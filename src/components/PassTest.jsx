@@ -1,4 +1,8 @@
+import { useEffect, useState } from "react";
+
 function PassTest() {
+  // const [tests, setTests] = useState([]);
+
   const tests = [
     {
       subject: "Математика",
