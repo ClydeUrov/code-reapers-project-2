@@ -7,16 +7,16 @@ const UserPage = () => {
   const [currentPage, setCurrentPage] = useState("main");
   const [user] = useLocalStorageState(null, "user");
   const userRole = {
-    ROLE_STUDENT: "Студент",
-    ROLE_ADMIN: "Старший викладач",
-    ROLE_TEACHER: "Викладач",
+    ROLE_STUDENT: "Студента",
+    ROLE_ADMIN: "Старшого викладача",
+    ROLE_TEACHER: "Викладача",
   };
   return (
     <>
       <div className="flex h-full min-h-[100vh]">
         <NavBar setCurrentPage={setCurrentPage} />
         <div className="w-full">
-          <h1 className="text-3xl font-normal">
+          <h1 className="text-3xl font-normal m-4">
             Електронний кабінет {userRole[user.role]}
           </h1>
           {mainPages[currentPage]}
