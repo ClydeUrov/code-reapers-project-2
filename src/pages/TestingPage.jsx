@@ -1,9 +1,10 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import TestingQuestion from "../components/TestingQuestion";
 import { useEffect, useState } from "react";
 import { getOneTest } from "../helpers/api";
 
 function TestingPage() {
+  const navigation = useNavigate();
   const { id } = useParams();
   const [data, setData] = useState(null);
 
@@ -57,7 +58,9 @@ function TestingPage() {
           })}
       </ul>
       <div className="flex-center w-full mt-12">
-        <button className="button1">Завершити</button>
+        <button className="button1" onClick={() => navigation("/profile")}>
+          Завершити
+        </button>
       </div>
     </article>
   );
