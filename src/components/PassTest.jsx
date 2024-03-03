@@ -85,7 +85,7 @@ function PassTest() {
                 // setSelected(student);
                 // setIsModalOpen(true);
               }}
-              className="cursor-pointer"
+              className="cursor-pointer hover:bg-gray-200"
             >
               <td className="px-6 py-4 whitespace-nowrap">
                 <div className="text-sm text-gray-900">{test.subject}</div>
