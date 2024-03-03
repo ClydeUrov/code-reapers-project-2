@@ -28,6 +28,23 @@ export async function getAllStudents() {
     .then((res) => res.data);
 }
 
+export async function updateStudent({ id, data }) {
+  const token = getToken();
+  console.log("data", id, data);
+  console.log(token);
+  return await axios
+    .put(
+      `http://ec2-16-170-239-71.eu-north-1.compute.amazonaws.com/campus/update/${id}`,
+      data,
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+    )
+    .then((res) => res.data);
+}
+
 export async function postMessageFacult(id, body) {
   const token = getToken();
 
