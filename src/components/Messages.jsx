@@ -37,11 +37,11 @@ function Messages() {
       <h2 className="font-semibold text-2xl">Ваші повідомлення</h2>
       <table class="table-auto w-full mt-4">
         <thead className="border-b">
-          <tr class="">
-            <td class="px-4 py-2">Від кого</td>
-            <td class="px-4 py-2">Тема</td>
-            <td class="px-4 py-2">Тип</td>
-            <td class="px-4 py-2">Дата</td>
+          <tr className="">
+            <td className="px-4 py-2">Від кого</td>
+            <td className="px-4 py-2">Тема</td>
+            <td className="px-4 py-2">Тип</td>
+            <td className="px-4 py-2">Дата</td>
           </tr>
         </thead>
         <tbody className="  ">
@@ -50,16 +50,16 @@ function Messages() {
                 return (
                   <tr
                     key={el.id}
-                    class="even:bg-gray-300 odd:bg-gray-100 even:hover:bg-gray-400 odd:hover:bg-gray-200 cursor-pointer"
+                    className="even:bg-gray-300 odd:bg-gray-100 even:hover:bg-gray-400 odd:hover:bg-gray-200 cursor-pointer"
                     onClick={() => {
                       setSelected(el);
                       setModalOpen(true);
                     }}
                   >
-                    <td class="px-4 py-2">{el.senderEmail}</td>
-                    <td class="px-4 py-2">{el.title}</td>
-                    <td class="px-4 py-2">{el.messageType}</td>
-                    <td class="px-4 py-2">{el.sendTime.split("T")[0]}</td>
+                    <td className="px-4 py-2">{el.senderEmail}</td>
+                    <td className="px-4 py-2">{el.title}</td>
+                    <td className="px-4 py-2">{el.messageType}</td>
+                    <td className="px-4 py-2">{el.sendTime.split("T")[0]}</td>
                   </tr>
                 );
               })

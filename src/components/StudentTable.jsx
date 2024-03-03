@@ -221,7 +221,7 @@ const StudentTable = () => {
               optionList={selected}
             />
           }
-          onCloseModal={() => setIsModalOpen(false)}
+          onCloseModal={() => setLetterModal(false)}
         />
       )}
     </div>
