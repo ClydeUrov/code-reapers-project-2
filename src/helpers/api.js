@@ -147,6 +147,23 @@ export async function getAllMessaages() {
     .then((res) => res.data);
 }
 
+export async function getAllTests() {
+  const token = getToken();
+
+  return axios
+    .get(
+      `http://ec2-16-170-239-71.eu-north-1.compute.amazonaws.com/campus/tests/all`,
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+
+        },
+      }
+    )
+    .then((res) => res.data);
+}
+
 function getToken() {
   const user = localStorage.getItem("user");
   const corr = JSON.parse(user);
