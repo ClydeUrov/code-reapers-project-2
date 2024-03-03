@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import UserPage from "./pages/UserPage";
 import LoginPage from "./pages/LoginPage";
 import { PrivateRoute } from "./helpers/PrivateRoute";
+import TestingPage from "./pages/TestingPage";
 
 function App() {
   return (
@@ -13,6 +14,10 @@ function App() {
         <Route
           path="/profile"
           element={<PrivateRoute component={<UserPage />} />}
+        ></Route>
+        <Route
+          path="/test/:id"
+          element={<PrivateRoute component={<TestingPage />} />}
         />
       </Route>
     </Routes>
