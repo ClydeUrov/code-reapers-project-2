@@ -19,7 +19,6 @@ const courses = [
   { name: "II", id: "II" },
   { name: "III", id: "III" },
   { name: "IV", id: "IV" },
-  { name: "V", id: "V" },
 ];
 const groups = [
   { name: "IO-05", id: 1 },

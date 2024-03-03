@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-
 function TestingQuestion({ question, setAnsw }) {
   return (
     <div>
