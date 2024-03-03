@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { IoSettings } from "react-icons/io5";
-import { FaRegBell } from "react-icons/fa6";
 import NavBar from "../components/NavBar";
 import { mainPages } from "../data/mainPages";
 import { useLocalStorageState } from "../helpers/useLocalStorageState";
