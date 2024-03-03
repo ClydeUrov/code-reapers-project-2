@@ -1,4 +1,3 @@
-import { AiOutlinePicture } from "react-icons/ai";
 import Logo from "./Logo";
 import NavLinks from "./NavLinks";
 import { linksForStudent } from "../data/linksForStudent";
@@ -7,6 +6,8 @@ import { IoMdArrowBack } from "react-icons/io";
 import { useNavigate } from "react-router";
 import { useLocalStorageState } from "../helpers/useLocalStorageState";
 import { useEffect } from "react";
+import teacher from "../icons/teacher.jpg";
+import student from "../icons/student.jpg";
 
 function NavBar({ setCurrentPage }) {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ function NavBar({ setCurrentPage }) {
       </div>
       <div className="w-full flex justify-center mb-6">
         <img
-          src="../icons/teacher"
+          src={user.role === "ROLE_STUDENT" ? student : teacher}
           alt=""
           className="rounded-full p-10 bg-aliceblue bg-opacity-60 h-auto min-w-32 border-solid object-fill shadow-lg text-slate-300"
         />
