@@ -5,7 +5,7 @@ import AnalisysOfSuccess from "../components/AnalisysOfSuccess";
 import AttendanceAnalysis from "../components/AttendanceAnalysis";
 import PassTest from "../components/PassTest";
 import CreateTest from "../components/CreateTest";
-import Distribution from "../components/Distribution";
+import Distribution from "../components/distributions/Distribution";
 import StudentTable from "../components/StudentTable";
 
 export const mainPages = {

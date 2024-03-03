@@ -36,11 +36,18 @@
 .button {
   @apply h-[55px] w-[180px] rounded-3xl border bg-gradient-to-b from-gray-300 to-gray-400 text-2xl hover:to-gray-500;
 }
+.button1 {
+  @apply h-12 min-w-24 w-fit  border-transparent px-6 py-2 rounded-3xl border-2 bg-stone-800/30 text-2xl hover:bg-stone-800/45 hover:border-stone-800/50 duration-150 ease-in hover:shadow-lg;
+}
 
 .input {
   @apply rounded-full border border-gray-300 px-4 py-2 focus:outline-none focus:border-blue-500 w-full;
 }
+.input1 {
+  @apply rounded-xl border border-gray-300 px-4 py-2 focus:outline-none focus:border-gray-500;
+} 
 
 .table_title {
   @apply px-6 py-3 text-left text-xs text-gray-700 uppercase tracking-wider font-semibold;
 }
+

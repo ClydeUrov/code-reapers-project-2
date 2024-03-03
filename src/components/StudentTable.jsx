@@ -3,9 +3,11 @@ import { PiMagnifyingGlassBold } from "react-icons/pi";
 import { IoFilterSharp } from "react-icons/io5";
 import { getAllStudents } from "../helpers/api";
 import { errorToast } from "../helpers/toasters";
-import toast from "react-hot-toast";
+import { SlEnvolopeLetter } from "react-icons/sl";
 import Modal from "./Modal";
 import ModalStudentCard from "./ModalStudentCard";
+import MessagesModal from "./MessagesModal";
+import FormDistribution from "./distributions/FormDistribution";
 
 function convertFromRoman(str) {
   if (str === "I") return 1;
@@ -21,7 +23,8 @@ const StudentTable = () => {
   const [sortOption, setSortOption] = useState("");
   const [sortedStudents, setSortedStudents] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selected, setSelected] = useState('');
+  const [selected, setSelected] = useState("");
+  const [letterModal, setLetterModal] = useState(false);
 
   useEffect(() => {
     async function fetchStudents() {
@@ -54,7 +57,7 @@ const StudentTable = () => {
     if (sortOption === "A-Z")
       setSortedStudents(() =>
         students
-          .slice() 
+          .slice()
           .sort((a, b) =>
             a.middleName > b.middleName
               ? 1
@@ -127,7 +130,7 @@ const StudentTable = () => {
               scope="col"
               className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
             >
-              Id
+              п/п
             </th>
             <th
               scope="col"
@@ -157,19 +160,26 @@ const StudentTable = () => {
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
           {sortedStudents.map((student) => (
-            <tr 
-              key={student.id}
-              onClick={() => {
-                setSelected(student);
-                setIsModalOpen(true);
-              }}
-              className="cursor-pointer"
-            >
+            <tr key={student.id} className="">
               <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-gray-900">{student.id}</div>
+                <div
+                  onClick={() => {
+                    setSelected(student);
+                    setLetterModal(true);
+                  }}
+                  className="text-sm text-gray-800 hover:text-base  hover:cursor-pointer hover:text-gray-950 duration-150 ease-in"
+                >
+                  <SlEnvolopeLetter />
+                </div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-gray-900">
+                <div
+                  className="text-sm border-b-2 border-transparent hover:border-gray-950 duration-150 ease-in text-gray-900 hover:cursor-pointer w-fit"
+                  onClick={() => {
+                    setSelected(student);
+                    setIsModalOpen(true);
+                  }}
+                >
                   {student.lastName +
                     " " +
                     student.firstName +
@@ -184,16 +194,35 @@ const StudentTable = () => {
                 <div className="text-sm text-gray-900">{student.course}</div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-gray-900">{student.groupCipher}</div>
+                <div className="text-sm text-gray-900">
+                  {student.groupCipher}
+                </div>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
       {isModalOpen && (
-        <Modal 
-          children={<ModalStudentCard student={selected} onClose={() => setIsModalOpen(false)} />} 
-          onCloseModal={() => setIsModalOpen(false)} 
+        <Modal
+          children={
+            <ModalStudentCard
+              student={selected}
+              onClose={() => setIsModalOpen(false)}
+            />
+          }
+          onCloseModal={() => setIsModalOpen(false)}
+        />
+      )}
+      {letterModal && (
+        <Modal
+          children={
+            <FormDistribution
+              onCloseModal={() => setLetterModal(false)}
+              type="student"
+              optionList={selected}
+            />
+          }
+          onCloseModal={() => setIsModalOpen(false)}
         />
       )}
     </div>
