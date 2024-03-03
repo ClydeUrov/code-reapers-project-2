@@ -1,28 +1,43 @@
 import { useState } from "react";
+import { createTest } from "../helpers/api";
+import { errorToast, successToast } from "../helpers/toasters";
 
 function CreateTest() {
   const [formValues, setFormValues] = useState({
-    subject: '',
-    title: '',
-    course: '',
-    group: '',
+    subjectId: '',
+    theme: '',
+    assignedGroupId: '',
     deadline: ''
   });
 
   const [questionValue, setQuestionValue] = useState({
     question: '',
-    variant1: '',
-    variant2: '',
-    variant3: '',
-    variant4: '',
-    rightAnswer: ''
+    option1: '',
+    option2: '',
+    option3: '',
+    option4: '',
+    correctOption: ''
   })
 
   const [questionsList, setQuestionList] = useState([]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formValues);
+    
+    formValues.options = questionsList
+
+    try {
+      await createTest(formValues);
+      successToast()
+    } catch (e) {
+      errorToast()
+    }
+    setFormValues({
+      subjectId: '',
+      theme: '',
+      assignedGroupId: '',
+      deadline: ''
+    })
   }
 
   const handleInputChange = (e) => {
@@ -46,34 +61,32 @@ function CreateTest() {
   const addQuestion = () => {
     if (
       questionValue.question.trim() === '' ||
-      questionValue.variant1.trim() === '' ||
-      questionValue.variant2.trim() === '' ||
-      questionValue.variant3.trim() === '' ||
-      questionValue.variant4.trim() === ''
+      questionValue.option1.trim() === '' ||
+      questionValue.option2.trim() === '' ||
+      questionValue.option3.trim() === '' ||
+      questionValue.option4.trim() === ''
     ) {
-      // Если какое-то из полей не заполнено, выводим сообщение об ошибке
       alert('Будь ласка, заповніть всі поля питання.');
-      return; // Прекращаем выполнение функции, чтобы новый вопрос не добавился
+      return;
     }
 
     const newQuestion = {
-      number: questionsList.length + 1,
       question: questionValue.question,
-      variant1: questionValue.variant1,
-      variant2: questionValue.variant2,
-      variant3: questionValue.variant3,
-      variant4: questionValue.variant4,
-      rightAnswer: questionValue.rightAnswer,
+      option1: questionValue.option1,
+      option2: questionValue.option2,
+      option3: questionValue.option3,
+      option4: questionValue.option4,
+      correctOption: questionValue.correctOption,
     };
 
     setQuestionList([...questionsList, newQuestion]);
 
     setQuestionValue({
       question: '',
-      variant1: '',
-      variant2: '',
-      variant3: '',
-      variant4: '',
+      option1: '',
+      option2: '',
+      option3: '',
+      option4: '',
     });
   }
 
@@ -82,30 +95,34 @@ function CreateTest() {
       <h1 className='text-4xl w-full text-center my-12'>Створити тестування</h1>
       <form onSubmit={handleSubmit} className="flex gap-5">
         <div className="flex flex-col gap-5 lg:w-[800px]">
-          <input
-            className="input"
-            id="subject"
-            type="text"
-            required
+          <select
+            className="input w-1/3"
+            id="subjectId"
             placeholder="Предмет тестування"
-            value={formValues.subject}
+            value={formValues.subjectId}
             onChange={handleInputChange}
-          />
+          >
+            <option value="">Виберіть предмет тестування</option>
+            <option value="1">History</option>
+            <option value="2">Maths</option>
+            <option value="3">Python</option>
+            <option value="4">Philosophy</option>
+          </select>
           <input
             className="input"
-            id="title"
+            id="theme"
             type="text"
             required
             placeholder="Тема тестування"
-            value={formValues.title}
+            value={formValues.theme}
             onChange={handleInputChange}
           />
           <div className="flex gap-12">
             <select
               className="input w-1/3"
-              id="group"
+              id="assignedGroupId"
               placeholder="Група тестування"
-              value={formValues.group}
+              value={formValues.assignedGroupId}
               onChange={handleInputChange}
             >
               <option value="">Виберіть групу</option>
@@ -143,40 +160,40 @@ function CreateTest() {
           <div className="flex gap-12">
             <input 
               className="input"
-              id="variant1"
+              id="option1"
               type="text"
               maxLength={36}
               placeholder="Варіант"
-              value={questionValue.variant1}
+              value={questionValue.option1}
               onChange={handleQuestionChange}
             />
             <input 
               className="input"
-              id="variant2"
+              id="option2"
               type="text"
               maxLength={36}
               placeholder="Варіант"
-              value={questionValue.variant2}
+              value={questionValue.option2}
               onChange={handleQuestionChange}
             />
           </div>
           <div className="flex gap-12">
             <input 
               className="input"
-              id="variant3"
+              id="option3"
               type="text"
               maxLength={36}
               placeholder="Варіант"
-              value={questionValue.variant3}
+              value={questionValue.option3}
               onChange={handleQuestionChange}
             />
             <input 
               className="input"
-              id="variant4"
+              id="option4"
               type="text"
               maxLength={36}
               placeholder="Варіант"
-              value={questionValue.variant4}
+              value={questionValue.option4}
               onChange={handleQuestionChange}
             />
           </div>
@@ -184,19 +201,21 @@ function CreateTest() {
             Правильна відповідь:
             <select
               className="input !w-80"
-              id="rightAnswer"
-              placeholder="Група тестування"
-              value={questionValue.rightAnswer}
+              id="correctOption"
+              required
+              placeholder=""
+              value={questionValue.correctOption}
               onChange={handleQuestionChange}
             >
-              <option value="1">{questionValue.variant1}</option>
-              <option value="2">{questionValue.variant2}</option>
-              <option value="3">{questionValue.variant3}</option>
-              <option value="4">{questionValue.variant4}</option>
+              <option value="">Виберіть правильну відповідь</option>
+              <option value="1">{questionValue.option1}</option>
+              <option value="2">{questionValue.option2}</option>
+              <option value="3">{questionValue.option3}</option>
+              <option value="4">{questionValue.option4}</option>
             </select>
           </div>
 
-          <button 
+          <button
             type="button"
             onClick={() => addQuestion()}
             className="px-4 py-2 border rounded-xl my-2 w-2/5 text-lg hover:bg-slate-200 border-gray-500"
@@ -213,20 +232,20 @@ function CreateTest() {
         <div className="max-w-[800px] mt-5">
           {questionsList.map((quest, index) => (
             <div key={index} className="my-5 flex gap-3 text-lg">
-              <p>{quest.number}.</p>
+              <p>{index + 1}.</p>
               <div className="flex flex-col">
                 <p className="">{quest.question}</p>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <p>1) {quest.variant1}</p>
-                    <p>2) {quest.variant2}</p>
+                    <p>1) {quest.option1}</p>
+                    <p>2) {quest.option2}</p>
                   </div>
                   <div>
-                    <p>3) {quest.variant3}</p>
-                    <p>4) {quest.variant4}</p>
+                    <p>3) {quest.option3}</p>
+                    <p>4) {quest.option4}</p>
                   </div>
                 </div>
-                <p className="my-2">Правильна відповідь: {quest.rightAnswer})</p>
+                <p className="my-2">Правильна відповідь: {quest.correctOption})</p>
               </div>
             </div>
           ))}

@@ -45,12 +45,25 @@ export async function getAllStudents() {
 
 export async function updateStudent({ id, data }) {
   const token = getToken();
-  console.log("data", id, data);
-  console.log(token);
   return await axios
     .put(
       `http://ec2-16-170-239-71.eu-north-1.compute.amazonaws.com/campus/update/${id}`,
       data,
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+    )
+    .then((res) => res.data);
+}
+
+export async function createTest(data) {
+  const token = getToken();
+  console.log(data);
+  return await axios
+    .post(
+      `http://ec2-16-170-239-71.eu-north-1.compute.amazonaws.com/campus/tests/create`, data,
       {
         headers: {
           Authorization: "Bearer " + token,
@@ -127,6 +140,7 @@ export async function getAllMessaages() {
         headers: {
           Authorization: "Bearer " + token,
           "Content-Type": "application/json",
+
         },
       }
     )
