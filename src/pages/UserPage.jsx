@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { IoSettings } from "react-icons/io5";
-import { FaRegBell } from "react-icons/fa6";
 import NavBar from "../components/NavBar";
 import { mainPages } from "../data/mainPages";
 import { useLocalStorageState } from "../helpers/useLocalStorageState";
@@ -22,11 +20,6 @@ const UserPage = () => {
             Електронний кабінет {userRole[user.role]}
           </h1>
           {mainPages[currentPage]}
-        </div>
-
-        <div className="mr-8 my-11 relative">
-          <FaRegBell className="text-3xl absolute top-10 right-10" />
-          <IoSettings className="text-3xl mt-auto  absolute bottom-10 right-10" />
         </div>
       </div>
     </>

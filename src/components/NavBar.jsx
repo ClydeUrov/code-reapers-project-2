@@ -13,12 +13,12 @@ function NavBar({ setCurrentPage }) {
   const [user] = useLocalStorageState(null, "user");
 
   useEffect(() => {
-    if (!user) navigate("/login");
+    if (!user) navigate("/");
   });
 
   const handleLogout = () => {
     localStorage.removeItem("user");
-    navigate("/login");
+    navigate("/");
   };
   return (
     <div className="flex flex-col gap-8 pt-6 px-6 bg-[#8A8677]  min-w-[320px] w-1/5  text-white">

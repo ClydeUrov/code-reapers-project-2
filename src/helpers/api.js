@@ -13,6 +13,21 @@ export async function fetchUser(email, password) {
     )
     .then((res) => res.data);
 }
+
+export async function getOneUser() {
+  const token = getToken();
+
+  return await axios
+    .get(
+      `http://ec2-16-170-239-71.eu-north-1.compute.amazonaws.com/campus/user/info`,
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+    )
+    .then((res) => res.data);
+}
 export async function getAllStudents() {
   const token = getToken();
 
@@ -49,7 +64,21 @@ export async function postMessageFacult(id, body) {
   const token = getToken();
 
   return axios.post(
-    `http://ec2-16-170-239-71.eu-north-1.compute.amazonaws.com/campus/send-message/faculty/${id}`,
+    `http://ec2-16-170-239-71.eu-north-1.compute.amazonaws.com/campus/messages/send/faculty/${id}`,
+    JSON.stringify(body),
+    {
+      headers: {
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+      },
+    }
+  );
+}
+export async function postMessageUser(id, body) {
+  const token = getToken();
+
+  return axios.post(
+    `http://ec2-16-170-239-71.eu-north-1.compute.amazonaws.com/campus/messages/send/student/${id}`,
     JSON.stringify(body),
     {
       headers: {
@@ -63,7 +92,7 @@ export async function postMessageGroup(id, body) {
   const token = getToken();
 
   return axios.post(
-    `http://ec2-16-170-239-71.eu-north-1.compute.amazonaws.com/campus/send-message/group/${id}`,
+    `http://ec2-16-170-239-71.eu-north-1.compute.amazonaws.com/campus/messages/send/group/${id}`,
     JSON.stringify(body),
     {
       headers: {
@@ -77,7 +106,7 @@ export async function postMessageCourse(id, body) {
   const token = getToken();
 
   return axios.post(
-    `http://ec2-16-170-239-71.eu-north-1.compute.amazonaws.com/campus/send-message/course/${id}`,
+    `http://ec2-16-170-239-71.eu-north-1.compute.amazonaws.com/campus/messages/send/course/${id}`,
     JSON.stringify(body),
     {
       headers: {
@@ -86,6 +115,22 @@ export async function postMessageCourse(id, body) {
       },
     }
   );
+}
+
+export async function getAllMessaages() {
+  const token = getToken();
+
+  return axios
+    .get(
+      `http://ec2-16-170-239-71.eu-north-1.compute.amazonaws.com/campus/messages/all`,
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+        },
+      }
+    )
+    .then((res) => res.data);
 }
 
 function getToken() {
