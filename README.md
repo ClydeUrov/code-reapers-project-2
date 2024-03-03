@@ -36,7 +36,7 @@
 
 ! **Також ви можете подивитись задеплоєнний сайт за посиланням:** [Site LInk](https://code-reapers-project-2.vercel.app/)
 
-**Посилання на код бекенду:** [Backend Link]()
+**Посилання на код бекенду:** [Backend Link](https://github.com/Hlb03/campus_INT20H)
 
 
 # Getting Started with Create React App
