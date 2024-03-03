@@ -25,13 +25,9 @@ function NavBar({ setCurrentPage }) {
       <div className="my-10 mr-4">
         <Logo />
       </div>
-      <div
-        className="w-full flex justify-center mb-6"
-        onClick={() => navigate("/test/123")}
-      >
+      <div className="w-full flex justify-center mb-6">
         <AiOutlinePicture className="rounded-full p-10 bg-aliceblue bg-opacity-60 h-auto min-w-32 border-solid object-fill shadow-lg text-slate-300" />
       </div>
-      {/* {user.role === "ROLE_STUD" ? ( */}
       {user.role === "ROLE_STUDENT" ? (
         <NavLinks list={linksForStudent} setCurrentPage={setCurrentPage} />
       ) : (

@@ -6,7 +6,6 @@ import { errorToast } from "../helpers/toasters";
 import { SlEnvolopeLetter } from "react-icons/sl";
 import Modal from "./Modal";
 import ModalStudentCard from "./ModalStudentCard";
-import MessagesModal from "./MessagesModal";
 import FormDistribution from "./distributions/FormDistribution";
 
 function convertFromRoman(str) {
